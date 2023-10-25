@@ -1,0 +1,9 @@
+
+.columnChart {
+    width: 100%;
+    max-width: 835px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

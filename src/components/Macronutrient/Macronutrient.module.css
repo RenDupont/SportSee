@@ -1,0 +1,33 @@
+
+.macronutrient {
+    width: 258px;
+    height: 124px; 
+    display: flex;
+    padding-left: 32px;
+    align-items: center;
+    gap: 20px;
+}
+
+.macronutrient div {
+    font-family: Roboto;
+    font-style: normal;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.macronutrient div h1 {
+    color: #282D30;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.macronutrient div h2 {
+    color: #74798C;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}

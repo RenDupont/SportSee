@@ -39,3 +39,8 @@ main {
 .graph {
     width: 100%;
 }
+
+.graph div {
+    display: flex;
+    gap: 30px;
+}

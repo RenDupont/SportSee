@@ -11,9 +11,12 @@ function LinearChart({data}) {
   };
 
   return (
-    <ResponsiveContainer width="25%" height={263}>
+    <ResponsiveContainer width="33%" height={263}>
       <LineChart data={data.sessions} style={{ backgroundColor: "#FF0000" }}>
-        <XAxis dataKey="day" tickFormatter={(value) => value} />
+        <XAxis 
+          dataKey="day" tick={{ fill: '#FFFFFF', opacity: '0.5' }} 
+          axisLine={false} tickLine={false} tickFormatter={(value) => value} 
+        />
         <Tooltip formatter={(value) => customFormat(value)} />
         <Legend />
         <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} />

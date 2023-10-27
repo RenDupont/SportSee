@@ -1,0 +1,13 @@
+
+.radarChart {
+    min-width: 258px;
+    background: #282D30;
+}
+
+tspan {
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 200% */
+}

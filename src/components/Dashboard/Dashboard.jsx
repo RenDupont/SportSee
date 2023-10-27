@@ -12,22 +12,26 @@ import carb from '../../assets/carbs-icon.png';
 import fat from '../../assets/fat-icon.png';
 import Macronutrient from '../Macronutrient/Macronutrient';
 import LinearChart from '../LinearChart/LinearChart';
+import RadarChartActivity from '../RadarChart/RadarChartActivity';
 
 function Dashboard() {
     const { id } = useParams();
     const [userData, setUserData] = useState();
     const [userDataActivity, setUserDataActivity] = useState();
     const [userDataAvgSession, setUserDataAvgSession] = useState();
+    const [userDataPerformance, setUserDataPerformance] = useState();
 
     const fetchData = useCallback(async () => {
         try {
             const userDataResponse = await axios.get('../../mock/userData.json');
             const userActivityResponse = await axios.get('../../mock/userActivity.json');
             const userAvgSessionResponse = await axios.get('../../mock/userAverageSession.json');
+            const userPerformanceResponse = await axios.get('../../mock/userPerformance.json');
 
             const userData = userDataResponse.data.find(user => user.id === parseInt(id, 10));
             const userActivity = userActivityResponse.data.find(user => user.userId === parseInt(id, 10));
             const userAverageSession = userAvgSessionResponse.data.find(user => user.userId === parseInt(id, 10));
+            const userPerformance = userPerformanceResponse.data.find(user => user.userId === parseInt(id, 10));
 
             if (userData) {
                 setUserData(userData);
@@ -45,6 +49,12 @@ function Dashboard() {
                 setUserDataAvgSession(userAverageSession);
             } else {
                 console.log("Données de session introuvables.");
+            }
+
+            if (userPerformance) {
+                setUserDataPerformance(userPerformance);
+            } else {
+                console.log("Données de performance introuvables.");
             }
         } catch (error) {
             console.log(error);
@@ -69,6 +79,7 @@ function Dashboard() {
                                         <ColumnChart data={userDataActivity} />
                                         <div>
                                             <LinearChart data={userDataAvgSession} />
+                                            <RadarChartActivity data={userDataPerformance} />
                                         </div>
                                     </div>
                                     <div className={Classes.allMacronutrient}>

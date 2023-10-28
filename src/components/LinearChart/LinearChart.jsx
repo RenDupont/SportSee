@@ -11,17 +11,17 @@ function LinearChart({data}) {
   };
 
   return (
-    <ResponsiveContainer width="33%" height={263}>
-      <LineChart data={data.sessions} style={{ backgroundColor: "#FF0000" }}>
+    <div className={Classes.linearChart} >
+      <LineChart width={258} height={263} data={data.sessions}>
         <XAxis 
           dataKey="day" tick={{ fill: '#FFFFFF', opacity: '0.5' }} 
           axisLine={false} tickLine={false} tickFormatter={(value) => value} 
         />
         <Tooltip formatter={(value) => customFormat(value)} />
         <Legend />
-        <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" dot={false} />
+        <Line type="monotone" name='Durée moyenne des sessions' dataKey="sessionLength" stroke="#FFFFFF" dot={false} />
       </LineChart>
-    </ResponsiveContainer>
+    </div>
   );
 }
 

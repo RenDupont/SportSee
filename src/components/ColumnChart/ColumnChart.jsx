@@ -24,7 +24,7 @@ function ColumnChart({data}) {
                     <BarChart data={data.sessions}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
-                        <YAxis dataKey='kilogram' domain={[69, ((maxKilo / 10) *10) + 10]} orientation='right'/>
+                        <YAxis dataKey='kilogram' domain={[0, ((maxKilo / 10) *10) + 10]} orientation='right'/>
                         <Tooltip />
                         <Legend wrapperStyle={{ bottom: 295, left: 260}} />
                         <Bar dataKey="kilogram" name="Poids (kg)" fill="#282D30" barSize={10} shape={"round"} />

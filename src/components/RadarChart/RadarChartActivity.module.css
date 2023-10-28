@@ -1,7 +1,7 @@
 
 .radarChart {
-    min-width: 258px;
     background: #282D30;
+    border-radius: 5px;
 }
 
 tspan {
@@ -9,5 +9,5 @@ tspan {
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px; /* 200% */
+    line-height: 24px;
 }

@@ -13,6 +13,7 @@ import fat from '../../assets/fat-icon.png';
 import Macronutrient from '../Macronutrient/Macronutrient';
 import LinearChart from '../LinearChart/LinearChart';
 import RadarChartActivity from '../RadarChart/RadarChartActivity';
+import ScoreRadialBarChart from '../ScoreRadialBarChart/ScoreRadialBarChart';
 
 function Dashboard() {
     const { id } = useParams();
@@ -80,6 +81,7 @@ function Dashboard() {
                                         <div>
                                             <LinearChart data={userDataAvgSession} />
                                             <RadarChartActivity data={userDataPerformance} />
+                                            <ScoreRadialBarChart data={userData} />
                                         </div>
                                     </div>
                                     <div className={Classes.allMacronutrient}>

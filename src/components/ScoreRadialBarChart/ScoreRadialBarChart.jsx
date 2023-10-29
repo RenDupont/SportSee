@@ -1,4 +1,4 @@
-import { RadialBarChart, RadialBar, Legend, Text } from 'recharts';
+import { RadialBarChart, RadialBar, Legend } from 'recharts';
 import Classes from './ScoreRadialBarChart.module.css';
 
 function RadialBarChartExample({ data }) {

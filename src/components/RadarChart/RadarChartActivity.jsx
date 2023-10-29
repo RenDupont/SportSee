@@ -1,5 +1,5 @@
 import { Radar, RadarChart, PolarGrid,  
-    PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts'; 
+    PolarAngleAxis } from 'recharts'; 
 import Classes from './RadarChartActivity.module.css';
 
 

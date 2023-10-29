@@ -1,7 +1,7 @@
 import Classes from './LinearChart.module.css';
 import { 
     LineChart, Line, XAxis,
-    Tooltip, Legend, ResponsiveContainer 
+    Tooltip, Legend
 } from 'recharts';
 
 function LinearChart({data}) {

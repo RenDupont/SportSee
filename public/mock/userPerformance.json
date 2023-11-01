@@ -3,24 +3,24 @@
     {
         "id": 12,
         "kind": {
-            "cardio": 80,
-            "energy": 120,
-            "endurance": 140,
-            "strength": 50,
-            "speed": 200,
-            "intensity": 90
+            "Intensité": 80,
+            "Vitesse": 120,
+            "Force": 140,
+            "Endurance": 50,
+            "Energie": 200,
+            "Cardio": 90
         }
     },
 
     {
         "id": 18,
         "kind": {
-            "cardio": 200,
-            "energy": 240,
-            "endurance": 80,
-            "strength": 80,
-            "speed": 220,
-            "intensity": 110
+            "Intensité": 200,
+            "Vitesse": 240,
+            "Force": 80,
+            "Endurance": 80,
+            "Energie": 220,
+            "Cardio": 110
         }
     }
 ]

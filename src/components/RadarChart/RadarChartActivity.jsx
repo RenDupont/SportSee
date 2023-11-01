@@ -12,8 +12,6 @@ function RadarChartActivity({data}) {
         value: kindData[category],
     }));
 
-    dataPoints = dataPoints.reverse();
-
     return (
         <div className={Classes.radarChart}>
             <RadarChart width={258} height={263} cx="50%" cy="50%" outerRadius="70%" data={dataPoints} >

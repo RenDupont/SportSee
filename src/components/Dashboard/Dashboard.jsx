@@ -5,7 +5,7 @@ import Title from '../Title/Title';
 import ColumnChart from '../ColumnChart/ColumnChart';
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { fetchUserData } from '../../service/apiService';
 import calorie from '../../assets/calories-icon.png';
 import protein from '../../assets/protein-icon.png';
 import carb from '../../assets/carbs-icon.png';
@@ -24,36 +24,28 @@ function Dashboard() {
 
     const fetchData = useCallback(async () => {
         try {
-            const userDataResponse = await axios.get('../../mock/userData.json');
-            const userActivityResponse = await axios.get('../../mock/userActivity.json');
-            const userAvgSessionResponse = await axios.get('../../mock/userAverageSession.json');
-            const userPerformanceResponse = await axios.get('../../mock/userPerformance.json');
+            const userData = await fetchUserData(id);
 
-            const userData = userDataResponse.data.find(user => user.id === parseInt(id, 10));
-            const userActivity = userActivityResponse.data.find(user => user.userId === parseInt(id, 10));
-            const userAverageSession = userAvgSessionResponse.data.find(user => user.userId === parseInt(id, 10));
-            const userPerformance = userPerformanceResponse.data.find(user => user.userId === parseInt(id, 10));
-
-            if (userData) {
-                setUserData(userData);
+            if (userData.userData) {
+                setUserData(userData.userData);
             } else {
                 console.log("Utilisateur non trouvé.");
             }
 
-            if (userActivity) {
-                setUserDataActivity(userActivity);
+            if (userData.userActivity) {
+                setUserDataActivity(userData.userActivity);
             } else {
                 console.log("Données d'activité introuvables.");
             }
 
-            if (userAverageSession) {
-                setUserDataAvgSession(userAverageSession);
+            if (userData.userAverageSession) {
+                setUserDataAvgSession(userData.userAverageSession);
             } else {
                 console.log("Données de session introuvables.");
             }
 
-            if (userPerformance) {
-                setUserDataPerformance(userPerformance);
+            if (userData.userPerformance) {
+                setUserDataPerformance(userData.userPerformance);
             } else {
                 console.log("Données de performance introuvables.");
             }

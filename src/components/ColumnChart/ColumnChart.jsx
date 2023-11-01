@@ -26,7 +26,7 @@ function ColumnChart({data}) {
                         <XAxis dataKey="day" />
                         <YAxis dataKey='kilogram' domain={[0, ((maxKilo / 10) *10) + 10]} orientation='right'/>
                         <Tooltip />
-                        <Legend wrapperStyle={{ bottom: 295, left: 260}} />
+                        <Legend wrapperStyle={{ bottom: 295, left: 545}} />
                         <Bar dataKey="kilogram" name="Poids (kg)" fill="#282D30" barSize={10} shape={"round"} />
                         <Bar dataKey="calories" name="Calories brûlées (kCal)" fill="#E60000" barSize={10} shape={"round"} />
                     </BarChart>

@@ -6,7 +6,7 @@ function RadialBarChartExample({ data }) {
     const percentageScore = data.score * 100;
     const score = [
         {fill:'#FF0000', name: 'Score', value: percentageScore },
-        {fill:'#FFFFFF', name: 'Empty', value: 100 - percentageScore },
+        {fill:'#FBFBFB', name: 'Empty', value: 100 },
     ];
 
     const style = {
@@ -19,8 +19,8 @@ function RadialBarChartExample({ data }) {
 
     return (
         <div className={Classes.scoreRadialBarChart}>
-            <RadialBarChart width={258} height={263} innerRadius={80} outerRadius={109} barSize={10} startAngle={200} endAngle={-200} data={score}>
-                <RadialBar background clockWise={true} dataKey="value" cornerRadius={3} />
+            <RadialBarChart width={258} height={263} innerRadius={80} outerRadius={109} startAngle={200} endAngle={-160} barSize={10} data={score}>
+                <RadialBar background clockWise={true} dataKey="value" />
                 <Legend iconSize={0} layout="vertical" verticalAlign="top" align="left" wrapperStyle={style}/>
             </RadialBarChart>
             <p className={Classes.objectif}>{percentageScore}% de votre objectif</p>

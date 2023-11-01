@@ -1,7 +1,7 @@
 import Classes from './LinearChart.module.css';
 import { 
     LineChart, Line, XAxis,
-    Tooltip, Legend
+    Tooltip, Legend, YAxis
 } from 'recharts';
 
 function LinearChart({data}) {
@@ -17,9 +17,10 @@ function LinearChart({data}) {
           dataKey="day" tick={{ fill: '#FFFFFF', opacity: '0.5' }} 
           axisLine={false} tickLine={false} tickFormatter={(value) => value} 
         />
+        <YAxis domain={[-10, 60]} hide={true} />
         <Tooltip formatter={(value) => customFormat(value)} />
         <Legend />
-        <Line type="monotone" name='Durée moyenne des sessions' dataKey="sessionLength" stroke="#FFFFFF" dot={false} />
+        <Line type="natural" name='Durée moyenne des sessions' dataKey="sessionLength" stroke="#FFFFFF" dot={false} />
       </LineChart>
     </div>
   );

@@ -8,9 +8,9 @@ export async function fetchUserData(id) {
         const userPerformanceResponse = await axios.get('../../mock/userPerformance.json');
 
         const userData = userDataResponse.data.find(user => user.id === parseInt(id, 10));
-        const userActivity = userActivityResponse.data.find(user => user.userId === parseInt(id, 10));
-        const userAverageSession = userAvgSessionResponse.data.find(user => user.userId === parseInt(id, 10));
-        const userPerformance = userPerformanceResponse.data.find(user => user.userId === parseInt(id, 10));
+        const userActivity = userActivityResponse.data.find(user => user.id === parseInt(id, 10));
+        const userAverageSession = userAvgSessionResponse.data.find(user => user.id === parseInt(id, 10));
+        const userPerformance = userPerformanceResponse.data.find(user => user.id === parseInt(id, 10));
 
         return {
             userData,

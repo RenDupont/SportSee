@@ -5,7 +5,7 @@ import Title from '../Title/Title';
 import ColumnChart from '../ColumnChart/ColumnChart';
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchUserData } from '../../service/apiService';
+import { fetchUserData } from '../../service/getUserData';
 import calorie from '../../assets/calories-icon.png';
 import protein from '../../assets/protein-icon.png';
 import carb from '../../assets/carbs-icon.png';
@@ -18,37 +18,17 @@ import ScoreRadialBarChart from '../ScoreRadialBarChart/ScoreRadialBarChart';
 function Dashboard() {
     const { id } = useParams();
     const [userData, setUserData] = useState();
-    const [userDataActivity, setUserDataActivity] = useState();
-    const [userDataAvgSession, setUserDataAvgSession] = useState();
-    const [userDataPerformance, setUserDataPerformance] = useState();
 
     const fetchData = useCallback(async () => {
         try {
             const userData = await fetchUserData(id);
 
-            if (userData.userData) {
-                setUserData(userData.userData);
+            if (userData) {
+                setUserData(userData);
             } else {
                 console.log("Utilisateur non trouvé.");
             }
 
-            if (userData.userActivity) {
-                setUserDataActivity(userData.userActivity);
-            } else {
-                console.log("Données d'activité introuvables.");
-            }
-
-            if (userData.userAverageSession) {
-                setUserDataAvgSession(userData.userAverageSession);
-            } else {
-                console.log("Données de session introuvables.");
-            }
-
-            if (userData.userPerformance) {
-                setUserDataPerformance(userData.userPerformance);
-            } else {
-                console.log("Données de performance introuvables.");
-            }
         } catch (error) {
             console.log(error);
         }
@@ -66,14 +46,14 @@ function Dashboard() {
                 <div className={Classes.dashboardContent}>
                     {userData ? (
                             <>
-                                <Title data={userData} />
+                                <Title />
                                 <main className={Classes.monitoring}>
                                     <div className={Classes.graph}>
-                                        <ColumnChart data={userDataActivity} />
+                                        <ColumnChart />
                                         <div>
-                                            <LinearChart data={userDataAvgSession} />
-                                            <RadarChartActivity data={userDataPerformance} />
-                                            <ScoreRadialBarChart data={userData} />
+                                            <LinearChart />
+                                            <RadarChartActivity />
+                                            <ScoreRadialBarChart />
                                         </div>
                                     </div>
                                     <div className={Classes.allMacronutrient}>

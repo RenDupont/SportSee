@@ -1,13 +1,37 @@
 import Classes from './Title.module.css';
-import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { fetchUserData } from '../../service/getUserData';
 
-function Title({data}) {
-    
+function Title() {
+    const { id } = useParams();
+    const [dataUser, setDataUser] = useState();
+
+    const fetchData = useCallback(async () => {
+        try {
+            const fetchedUserData  = await fetchUserData(id);
+
+            if (fetchedUserData) {
+                setDataUser(fetchedUserData);
+            } else {
+                console.log("Utilisateur non trouvé.");
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, [id]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+
     return (
         <div className={Classes.title}>
-            {data ? (
+            {dataUser ? (
                 <>
-                    <h1>Bonjour {data.userInfos.firstName}</h1>
+                    <h1>Bonjour {dataUser.userInfos.firstName}</h1>
                     <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                 </>
             ): null

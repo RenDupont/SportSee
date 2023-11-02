@@ -3,7 +3,7 @@
     {
         "id": 12,
         "kind": {
-            "Intensité": 80,
+            "Intensite": 80,
             "Vitesse": 120,
             "Force": 140,
             "Endurance": 50,
@@ -15,7 +15,7 @@
     {
         "id": 18,
         "kind": {
-            "Intensité": 200,
+            "Intensite": 200,
             "Vitesse": 240,
             "Force": 80,
             "Endurance": 80,

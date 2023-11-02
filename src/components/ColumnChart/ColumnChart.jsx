@@ -4,24 +4,50 @@ import {
     YAxis, CartesianGrid, Tooltip,
     Legend, ResponsiveContainer 
 } from "recharts";
+import { useParams } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { fetchUserActivity } from '../../service/getUserActivity';
 
-function ColumnChart({data}) {
+function ColumnChart() {
 
-    let maxKilo = 0;
+    const { id } = useParams();
+    const [userDataActivity, setUserDataActivity] = useState();
+
+    const fetchData = useCallback(async () => {
+        try {
+            const fetchedUserData  = await fetchUserActivity(id);
+            console.log(fetchedUserData);
+
+            if (fetchedUserData) {
+                setUserDataActivity(fetchedUserData);
+            } else {
+                console.log("Utilisateur non trouvé.");
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, [id]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    let maxKilo = 80;
     let minKilo = 0;
 
-    if (data) {
+    /*if (data) {
         data.sessions.forEach( it => {
             maxKilo = Math.max(maxKilo, it.kilogram);
             minKilo = Math.min(minKilo, it.kilogram);
         });
-    }
+    }*/
 
     return (
         <div className={Classes.columnChart}>
-            {data ? (
+            {userDataActivity ? (
                 <ResponsiveContainer width="100%" height={280}>
-                    <BarChart data={data.sessions}>
+                    <BarChart data={userDataActivity.sessions}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
                         <YAxis dataKey='kilogram' domain={[0, ((maxKilo / 10) *10) + 10]} orientation='right'/>

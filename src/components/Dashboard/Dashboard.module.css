@@ -32,12 +32,6 @@ main {
     margin-left: 7%;
 }
 
-.allMacronutrient {
-    display: flex;
-    flex-direction: column;
-    gap: 39px;
-}
-
 .graph {
     width: 68%;
     display: flex;

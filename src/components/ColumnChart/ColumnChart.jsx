@@ -16,7 +16,6 @@ function ColumnChart() {
     const fetchData = useCallback(async () => {
         try {
             const fetchedUserData  = await fetchUserActivity(id);
-            console.log(fetchedUserData);
 
             if (fetchedUserData) {
                 setUserDataActivity(fetchedUserData);

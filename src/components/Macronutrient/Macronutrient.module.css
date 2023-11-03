@@ -1,4 +1,10 @@
 
+.allMacronutrient {
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+}
+
 .macronutrient {
     width: 258px;
     height: 124px; 

@@ -1,7 +1,7 @@
 import { RadialBarChart, RadialBar, Legend } from 'recharts';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { fetchUserData } from '../../service/getUserData';
+import { normalizeUserDataApi } from '../../service/apiService';
 import Classes from './ScoreRadialBarChart.module.css';
 
 function RadialBarChartExample() {
@@ -10,7 +10,7 @@ function RadialBarChartExample() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await fetchUserData(id);
+            const fetchedUserData  = await normalizeUserDataApi(id);
 
             if (fetchedUserData) {
                 setDataUser(fetchedUserData);

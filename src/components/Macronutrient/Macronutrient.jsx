@@ -1,7 +1,7 @@
 import Classes from './Macronutrient.module.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { fetchUserData } from '../../service/getUserData';
+import { normalizeUserDataApi } from '../../service/apiService';
 import calorie from '../../assets/calories-icon.png';
 import protein from '../../assets/protein-icon.png';
 import carb from '../../assets/carbs-icon.png';
@@ -13,7 +13,7 @@ function Macronutrient() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await fetchUserData(id);
+            const fetchedUserData  = await normalizeUserDataApi(id);
 
             if (fetchedUserData) {
                 setDataUser(fetchedUserData);

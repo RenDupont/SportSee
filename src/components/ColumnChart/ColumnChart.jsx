@@ -6,7 +6,7 @@ import {
 } from "recharts";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { fetchUserActivity } from '../../service/getUserActivity';
+import { normalizeUserDataApi } from '../../service/apiService';
 
 function ColumnChart() {
 
@@ -15,7 +15,7 @@ function ColumnChart() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await fetchUserActivity(id);
+            const fetchedUserData  = await normalizeUserDataApi(`${id}/activity`);
 
             if (fetchedUserData) {
                 setUserDataActivity(fetchedUserData);
@@ -33,9 +33,9 @@ function ColumnChart() {
     }, [fetchData]);
 
     let maxKilo = 80;
-    let minKilo = 0;
+    /*let minKilo = 0;
 
-    /*if (data) {
+    if (data) {
         data.sessions.forEach( it => {
             maxKilo = Math.max(maxKilo, it.kilogram);
             minKilo = Math.min(minKilo, it.kilogram);

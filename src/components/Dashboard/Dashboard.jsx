@@ -37,4 +37,8 @@ function Dashboard() {
 export default Dashboard;
 
 
-//change service files name from getUser... to getData... 
+//inverser la liste des type de performance 
+//modifier linearCHart pour qu'il corresponde à la maquette
+//changer les légendes des chart pour correspondre à la maquette
+//faire le responsive
+//middleware ?

@@ -3,7 +3,7 @@ import { Radar, RadarChart, PolarGrid,
 import Classes from './RadarChartActivity.module.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { fetchUserPerformance } from '../../service/getUserPerformance';
+import { normalizeUserDataApi } from '../../service/apiService';
 
 
 function RadarChartActivity() {
@@ -13,7 +13,7 @@ function RadarChartActivity() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await fetchUserPerformance(id);
+            const fetchedUserData  = await normalizeUserDataApi(`${id}/performance`);
 
             if (fetchedUserData) {
                 setUserDataPerformance(fetchedUserData);

@@ -10,3 +10,44 @@
     background: #FBFBFB;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
 }
+
+.chartTooltip {
+    width: 40px;
+    height: 63px;
+    background: #E60000;
+    position: relative;
+}
+
+.chartTooltip span {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 4px;
+}
+
+.chartTooltip p {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 32px;
+}

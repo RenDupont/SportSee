@@ -75,14 +75,21 @@ export async function normalizeUserDataApi(request) {
                 };
 
                 const kindObject = {};
+                const reversedKindObject = {}; // reverse to match ui mockup
 
                 data.forEach(item => {
                     kindObject[kindMapping[item.kind]] = item.value;
                 });
 
+                const keys = Object.keys(kindObject).reverse();
+
+                keys.forEach(key => {
+                    reversedKindObject[key] = kindObject[key];
+                });
+
                 const normalizedUserPerformance = {
                     id: userId,
-                    kind: kindObject
+                    kind: reversedKindObject
                 };
 
                 return normalizedUserPerformance;

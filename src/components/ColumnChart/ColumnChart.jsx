@@ -42,6 +42,18 @@ function ColumnChart() {
         });
     }*/
 
+    const CustomTooltip = ({ active, payload, label }) => {
+    
+        if (active && payload && payload.length) {
+            return (
+                <div className={Classes.chartTooltip}>
+                    <span>{`${payload[0].value}kg`}</span>
+                    <p>{`${payload[1].value}kCal`}</p>
+                </div>
+            );
+        }
+    }
+
     return (
         <div className={Classes.columnChart}>
             {userDataActivity ? (
@@ -50,10 +62,10 @@ function ColumnChart() {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
                         <YAxis dataKey='kilogram' domain={[0, ((maxKilo / 10) *10) + 10]} orientation='right'/>
-                        <Tooltip />
+                        <Tooltip content={CustomTooltip} />
                         <Legend wrapperStyle={{ bottom: 295, left: 545}} />
-                        <Bar dataKey="kilogram" name="Poids (kg)" fill="#282D30" barSize={10} shape={"round"} />
-                        <Bar dataKey="calories" name="Calories brûlées (kCal)" fill="#E60000" barSize={10} shape={"round"} />
+                        <Bar dataKey="kilogram" name="Poids (kg)" fill="#282D30" barSize={10} shape={"round"} legendType='circle' />
+                        <Bar dataKey="calories" name="Calories brûlées (kCal)" fill="#E60000" barSize={10} shape={"round"} legendType='circle' />
                     </BarChart>
                 </ResponsiveContainer>
             ) : null}

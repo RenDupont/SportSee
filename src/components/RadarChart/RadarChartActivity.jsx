@@ -31,24 +31,24 @@ function RadarChartActivity() {
     }, [fetchData]);
 
 
-    const dataPoints = (dataKind) => {
-        return Object.keys(dataKind).map((category) => ({
+    const dataPoints = () => {
+        return Object.keys(userDataPerformance.kind).map((category) => ({
             name: category,
-            value: dataKind[category],
+            value: userDataPerformance.kind[category],
         }));
     };
 
     return (
         <div className={Classes.radarChart}>
-            {userDataPerformance ? (
+            {userDataPerformance && (
                 <>
-                    <RadarChart width={258} height={263} cx="50%" cy="50%" outerRadius="70%" data={dataPoints(userDataPerformance.kind)} >
+                    <RadarChart width={258} height={263} cx="50%" cy="50%" outerRadius="70%" data={dataPoints()} >
                         <PolarGrid radialLines={false} />
                         <PolarAngleAxis dataKey="name" tick={{ fill: 'white' }} />
                         <Radar dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
                     </RadarChart>
                 </>
-            ) :null}
+            )}
         </div>
     );
 }

@@ -31,14 +31,6 @@ function LinearChart() {
     fetchData();
   }, [fetchData]);
 
-  const customFormat = (value, name) => {
-    return (
-      <div>
-          <span style={{display: 'none'}}>{name}</span>
-          <span style={{ color: 'black' }}>{value} min</span>
-      </div>
-    );
-  };
 
   const CustomTooltip = ({ active, payload, label }) => {
     
@@ -60,11 +52,12 @@ function LinearChart() {
                 dataKey="day" tick={{ fill: '#FFFFFF', opacity: '0.5' }} 
                 axisLine={false} tickLine={false} tickFormatter={(value) => value} 
               />
-              <YAxis domain={[-10, 60]} hide={true} />
+              <YAxis domain={[-10, 100]} hide={true} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Line type="natural" stroke='#FFFFFF' dataKey="sessionLength" dot={false}/>
+              <Line type="natural" strokeWidth={2} stroke='#FFFFFF' dataKey="sessionLength" dot={false} legendType='none'/>
             </LineChart>
+            <span className={Classes.legend}>Durée moyenne des sessions</span>
           </>
         )}
       </div>

@@ -2,7 +2,7 @@
 
 .linearChart {
     border-radius: 5px;
-    background-color: #FF0000;
+    background-color: #FF0000; position: relative;
 }
 
 .chartTooltip {
@@ -23,4 +23,18 @@
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
+}
+
+.legend {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    position: absolute;
+    top: 29px;
+    left: 34px;
+    width: 147px;
+    opacity: 0.504;
 }

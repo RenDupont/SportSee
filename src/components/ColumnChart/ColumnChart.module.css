@@ -51,3 +51,7 @@
     transform: translateX(-50%);
     top: 32px;
 }
+
+.hideAxeY {
+    display: none;
+}

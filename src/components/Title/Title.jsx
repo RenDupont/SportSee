@@ -1,7 +1,7 @@
 import Classes from './Title.module.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { normalizeUserDataApi } from '../../service/apiService';
+import { getTitleData } from '../../service/apiGetTitleData';
 
 function Title() {
     const { id } = useParams();
@@ -9,7 +9,8 @@ function Title() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await normalizeUserDataApi(`${id}`);
+            const fetchedUserData  = await getTitleData(`${id}`);
+            console.log(fetchedUserData);
 
             if (fetchedUserData) {
                 setDataUser(fetchedUserData);
@@ -29,13 +30,12 @@ function Title() {
 
     return (
         <div className={Classes.title}>
-            {dataUser ? (
+            {dataUser && (
                 <>
-                    <h1>Bonjour {dataUser.userInfos.firstName}</h1>
+                    <h1>Bonjour {dataUser.firstName}</h1>
                     <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                 </>
-            ): null
-            }
+            )}
         </div>
     );
 }

@@ -10,7 +10,6 @@ function Title() {
     const fetchData = useCallback(async () => {
         try {
             const fetchedUserData  = await getTitleData(`${id}`);
-            console.log(fetchedUserData);
 
             if (fetchedUserData) {
                 setDataUser(fetchedUserData);

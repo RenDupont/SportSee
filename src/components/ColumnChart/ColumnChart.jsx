@@ -6,7 +6,7 @@ import {
 } from "recharts";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { normalizeUserDataApi } from '../../service/apiService';
+import { getColumnChartData } from '../../service/apiGetColumnChartData';
 
 function ColumnChart() {
 
@@ -15,7 +15,7 @@ function ColumnChart() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await normalizeUserDataApi(`${id}/activity`);
+            const fetchedUserData  = await getColumnChartData(`${id}/activity`);
 
             if (fetchedUserData) {
                 setUserDataActivity(fetchedUserData);

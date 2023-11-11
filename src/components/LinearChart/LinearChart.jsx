@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
-import { normalizeUserDataApi } from '../../service/apiService';
+import { getLinearChartData } from '../../service/apiGetLinearChartData';
 
 function LinearChart() {
 
@@ -14,7 +14,7 @@ function LinearChart() {
 
   const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await normalizeUserDataApi(`${id}/average-sessions`);
+            const fetchedUserData  = await getLinearChartData(`${id}/average-sessions`);
 
             if (fetchedUserData) {
               setUserDataAvgSession(fetchedUserData);

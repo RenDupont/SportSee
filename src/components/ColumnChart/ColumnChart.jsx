@@ -57,18 +57,21 @@ function ColumnChart() {
     return (
         <div className={Classes.columnChart}>
             {userDataActivity && (
-                <ResponsiveContainer width="100%" height={280}>
-                    <BarChart data={userDataActivity.sessions}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="day" />
-                        <YAxis dataKey="kilogram" domain={[minKilo - 10, (Math.ceil(maxKilo / 10) * 10)]} yAxisId="left"  orientation="right" allowDataOverflow />
-                        <YAxis dataKey="calories" domain={[0, 700]} yAxisId="right" orientation="left" className={Classes.hideAxeY} />
-                        <Tooltip content={CustomTooltip} />
-                        <Legend wrapperStyle={{ bottom: 295, left: 545}} />
-                        <Bar yAxisId="left" dataKey="kilogram" name="Poids (kg)" fill="#282D30" barSize={10} legendType='circle' radius={3} />
-                        <Bar yAxisId="right" dataKey="calories" name="Calories brûlées (kCal)" fill="#E60000" barSize={10} shape={"round"} legendType='circle' radius={3} />
-                    </BarChart>
-                </ResponsiveContainer>
+                <>
+                    <ResponsiveContainer width="100%" height={280}>
+                        <BarChart data={userDataActivity.sessions} barGap="10%">
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="day" />
+                            <YAxis dataKey="kilogram" domain={[minKilo - 10, (Math.ceil(maxKilo / 10) * 10)]} yAxisId="left"  orientation="right" allowDataOverflow />
+                            <YAxis dataKey="calories" domain={[0, 400]} yAxisId="right" orientation="left" className={Classes.hideAxeY} />
+                            <Tooltip content={CustomTooltip} />
+                            <Legend iconSize={10} formatter={(value, entry, index) => (<span className={Classes.legend}>{value}</span>) } wrapperStyle={{ bottom: 295, left: 545}} />
+                            <Bar yAxisId="left" dataKey="kilogram" name="Poids (kg)" fill="#282D30" barSize={8} legendType='circle' radius={3} />
+                            <Bar yAxisId="right" dataKey="calories" name="Calories brûlées (kCal)" fill="#E60000" barSize={8} shape={"round"} legendType='circle' radius={3} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                    <span className={Classes.description}>Activité quotidienne</span>
+                </>
             )}
         </div>
     );

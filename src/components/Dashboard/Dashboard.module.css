@@ -2,17 +2,16 @@
 section {
     position: relative;
     display: flex;
-    height: 1000px;
 }
 
 main {
     position: relative;
     width: inherit;
     max-height: 933px;
-    height: 80%;
     display: flex;
     justify-content: flex-start;
     gap: 35px;
+    margin-top: 77px;
 }
 
 .dashboard {
@@ -30,6 +29,7 @@ main {
     flex-direction: column;
     justify-content: center;
     margin-left: 7%;
+    height: fit-content;
 }
 
 .graph {
@@ -37,6 +37,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    height: fit-content;
 }
 
 .graph div {

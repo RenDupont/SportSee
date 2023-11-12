@@ -1,69 +1,51 @@
-import axios from "axios";
+import axios from 'axios';
 
-export async function normalizeUserDataApi(request) {
-    try {
-        const apiResponse = await axios.get('http://localhost:3000/user/' + request);
-        const apiUser = apiResponse.data;
+export default class apiService {
 
-        const dayConverter = (day) => {
-            const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
-            return daysOfWeek[day - 1];
-        }
+    constructor() {
+        this.urlApi = 'http://localhost:3000/user/';
+    }
 
-        if (/^\d+$/.test(request)) {
-
+    async getTitleData(request) {
+        try {
+            const apiResponse = await axios.get(this.urlApi + request);
+            const apiUser = apiResponse.data;
+    
             if (apiUser) {
-                const { id, userInfos, todayScore, score, keyData } = apiUser.data;
+                const { userInfos } = apiUser.data;
+                return userInfos;
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    }
+
+    async getScoreRadialBarData(request) {
+        try {
+            const apiResponse = await axios.get(this.urlApi + request);
+            const apiUser = apiResponse.data;
+    
+            if (apiUser) {
+                const { todayScore, score } = apiUser.data;
 
                 const normalizedTodayScore = todayScore || score;
 
-                const normalizedUserData = {
-                    id,
-                    userInfos,
-                    score: normalizedTodayScore,
-                    keyData
-                };
-
-                return normalizedUserData;
+                return normalizedTodayScore * 100;
             }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    }
 
-        } else if (/^\d+\/activity$/.test(request)) {
-            
+    async getRadarActivityData(request) {
+        try {
+            const apiResponse = await axios.get(this.urlApi + request);
+            const apiUser = apiResponse.data;
+    
             if (apiUser) {
-                const { userId, sessions } = apiUser.data;
-
-                const normalizedUserActivity = {
-                    id: userId,
-                    sessions: sessions.map(it => ({
-                        day: it.day.substring(9, 10),
-                        kilogram: it.kilogram,
-                        calories: it.calories
-                    }))
-                };
-
-                return normalizedUserActivity;
-            }
-
-        } else if (/^\d+\/average-sessions$/.test(request)) {
-            
-            if (apiUser) {
-                const { userId, sessions } = apiUser.data;
-
-                const normalizedUserAvgSessions = {
-                    id: userId,
-                    sessions: sessions.map(it => ({
-                        day: dayConverter(it.day),
-                        sessionLength: it.sessionLength
-                    }))
-                };
-
-                return normalizedUserAvgSessions;
-            }
-
-        } else if (/^\d+\/performance$/.test(request)) {
-            
-            if (apiUser) {
-                const { userId, data } = apiUser.data;
+                const { data } = apiUser.data;
 
                 const kindMapping = {
                     1: "Cardio",
@@ -88,16 +70,84 @@ export async function normalizeUserDataApi(request) {
                 });
 
                 const normalizedUserPerformance = {
-                    id: userId,
                     kind: reversedKindObject
                 };
 
                 return normalizedUserPerformance;
             }
-        } else return null;
-
-    } catch (error) {
-        console.error(error);
-        throw error;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
     }
+
+    async getMacronutrientData(request) {
+        try {
+            const apiResponse = await axios.get(this.urlApi + request);
+            const apiUser = apiResponse.data;
+    
+            if (apiUser) {
+                const { keyData } = apiUser.data;
+
+                return keyData;
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    }
+
+    async getLinearChartData(request) {
+
+        const dayConverter = (day) => {
+            const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
+            return daysOfWeek[day - 1];
+        }
+
+        try {
+            const apiResponse = await axios.get(this.urlApi + request);
+            const apiUser = apiResponse.data;
+    
+            if (apiUser) {
+                const { sessions } = apiUser.data;
+
+                const normalizedUserAvgSessions = {
+                    sessions: sessions.map(it => ({
+                        day: dayConverter(it.day),
+                        sessionLength: it.sessionLength
+                    }))
+                };
+
+                return normalizedUserAvgSessions;
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    }
+
+    async getColumnChartData(request) {
+        try {
+            const apiResponse = await axios.get(this.urlApi + request);
+            const apiUser = apiResponse.data;
+    
+            if (apiUser) {
+                const { sessions } = apiUser.data;
+
+                const normalizedUserActivity = {
+                    sessions: sessions.map(it => ({
+                        day: it.day.substring(9, 10),
+                        kilogram: it.kilogram,
+                        calories: it.calories
+                    }))
+                };
+
+                return normalizedUserActivity;
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    }
+
 }

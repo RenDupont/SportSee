@@ -6,7 +6,9 @@ import {
 } from "recharts";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { getColumnChartData } from '../../service/apiGetColumnChartData';
+/*import { getColumnChartData } from '../../service/apiGetColumnChartData';*/
+import ApiService from '../../service/apiService';
+
 
 function ColumnChart() {
 
@@ -15,7 +17,8 @@ function ColumnChart() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await getColumnChartData(`${id}/activity`);
+            const apiServiceInstance = new ApiService();
+            const fetchedUserData  = await apiServiceInstance.getColumnChartData(`${id}/activity`);
 
             if (fetchedUserData) {
                 setUserDataActivity(fetchedUserData);

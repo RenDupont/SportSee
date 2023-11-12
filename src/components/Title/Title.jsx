@@ -1,7 +1,8 @@
 import Classes from './Title.module.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import { getTitleData } from '../../service/apiGetTitleData';
+/*import { getTitleData } from '../../service/apiGetTitleData';*/
+import ApiService from '../../service/apiService';
 
 function Title() {
     const { id } = useParams();
@@ -9,7 +10,9 @@ function Title() {
 
     const fetchData = useCallback(async () => {
         try {
-            const fetchedUserData  = await getTitleData(`${id}`);
+
+            const apiServiceInstance = new ApiService();
+            const fetchedUserData  = await apiServiceInstance.getTitleData(`${id}`);
 
             if (fetchedUserData) {
                 setDataUser(fetchedUserData);

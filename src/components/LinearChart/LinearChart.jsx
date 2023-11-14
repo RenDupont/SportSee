@@ -13,6 +13,7 @@ function LinearChart() {
 
   const { id } = useParams();
   const [userDataAvgSession, setUserDataAvgSession] = useState();
+  const [error, setError] = useState();
 
   const fetchData = useCallback(async () => {
         try {
@@ -22,7 +23,7 @@ function LinearChart() {
             if (fetchedUserData) {
               setUserDataAvgSession(fetchedUserData);
             } else {
-              console.log("Utilisateur non trouvé.");
+              setError("data not find...");
             }
 
         } catch (error) {
@@ -48,20 +49,27 @@ function LinearChart() {
 
     return (
       <div className={Classes.linearChart} >
-        {userDataAvgSession && (
-          <>
-            <LineChart width={258} height={263} data={userDataAvgSession.sessions}>
-              <XAxis 
-                dataKey="day" tick={{ fill: '#FFFFFF', opacity: '0.5' }} 
-                axisLine={false} tickLine={false} tickFormatter={(value) => value} 
-              />
-              <YAxis domain={[-10, 100]} hide={true} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              <Line type="natural" strokeWidth={2} stroke='#FFFFFF' dataKey="sessionLength" dot={false} legendType='none'/>
-            </LineChart>
-            <span className={Classes.legend}>Durée moyenne des sessions</span>
-          </>
+        {error ? (
+          <div className={Classes.errorMessage}>
+            <p>{error}</p>
+          </div>
+        ) : (
+          userDataAvgSession && (
+            <>
+              <LineChart width={240} height={263} data={userDataAvgSession.sessions}>
+                <XAxis 
+                  dataKey="day" tick={{ fill: '#FFFFFF', opacity: '0.5' }} 
+                  axisLine={false} tickLine={false} tickFormatter={(value) => value}
+                  allowDataOverflow={true}
+                />
+                <YAxis domain={[-10, 100]} hide={true} />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend />
+                <Line type="natural" strokeWidth={2} stroke='#FFFFFF' dataKey="sessionLength" dot={false} legendType='none' />
+              </LineChart>
+              <span className={Classes.legend}>Durée moyenne des sessions</span>
+            </>
+          )
         )}
       </div>
     );

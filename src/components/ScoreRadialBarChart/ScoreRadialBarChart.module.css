@@ -7,6 +7,7 @@
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
     font-family: Roboto;
     font-style: normal;
+    width: 258px;
 }
 
 .objectif {
@@ -48,4 +49,17 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 24px;
+}
+
+.errorMessage {
+    color: #20253A;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

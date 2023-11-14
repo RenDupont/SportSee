@@ -2,7 +2,12 @@
 
 .linearChart {
     border-radius: 5px;
-    background-color: #FF0000; position: relative;
+    background-color: #FF0000;
+    position: relative;
+    width: 258px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .chartTooltip {
@@ -37,4 +42,14 @@
     left: 34px;
     width: 147px;
     opacity: 0.504;
+}
+
+.errorMessage {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
 }

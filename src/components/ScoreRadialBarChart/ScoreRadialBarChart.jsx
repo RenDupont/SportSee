@@ -8,6 +8,7 @@ import Classes from './ScoreRadialBarChart.module.css';
 function RadialBarChartExample() {
     const { id } = useParams();
     const [dataUser, setDataUser] = useState();
+    const [error, setError] = useState();
 
     const fetchData = useCallback(async () => {
         try {
@@ -17,7 +18,7 @@ function RadialBarChartExample() {
             if (fetchedUserData) {
                 setDataUser(fetchedUserData);
             } else {
-                console.log("Utilisateur non trouvé.");
+                setError('data not find...');
             }
 
         } catch (error) {
@@ -37,17 +38,23 @@ function RadialBarChartExample() {
 
     return (
         <div className={Classes.scoreRadialBarChart}>
-            {dataUser && (
-                <>
-                    <RadialBarChart width={258} height={263} innerRadius={80} outerRadius={109} startAngle={200} endAngle={-160} barSize={10} data={score(dataUser)}>
-                        <RadialBar background={false} clockWise={true} dataKey="value" />
-                    </RadialBarChart>
-                    <div className={Classes.objectif}>
-                        <span className={Classes.objectif_value}>{dataUser}%</span>
-                        <span className={Classes.objectif_text}>de votre objectif</span>
-                    </div>
-                    <span className={Classes.legend}>Score</span>
-                </>
+            {error ? (
+                <div className={Classes.errorMessage}>
+                    <p>{error}</p>
+                </div>
+            ) : (
+                dataUser && (
+                    <>
+                        <RadialBarChart width={258} height={263} innerRadius={80} outerRadius={109} startAngle={200} endAngle={-160} barSize={10} data={score(dataUser)}>
+                            <RadialBar background={false} clockWise={true} dataKey="value" />
+                        </RadialBarChart>
+                        <div className={Classes.objectif}>
+                            <span className={Classes.objectif_value}>{dataUser}%</span>
+                            <span className={Classes.objectif_text}>de votre objectif</span>
+                        </div>
+                        <span className={Classes.legend}>Score</span>
+                    </>
+                )
             )}
         </div>
     );

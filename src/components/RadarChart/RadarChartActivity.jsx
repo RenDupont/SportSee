@@ -10,6 +10,7 @@ function RadarChartActivity() {
 
     const { id } = useParams();
     const [userDataPerformance, setUserDataPerformance] = useState();
+    const [error, setError] = useState();
 
     const fetchData = useCallback(async () => {
         try {
@@ -19,7 +20,7 @@ function RadarChartActivity() {
             if (fetchedUserData) {
                 setUserDataPerformance(fetchedUserData);
             } else {
-                console.log("Utilisateur non trouvé.");
+                setError('data not find...');
             }
 
         } catch (error) {
@@ -41,14 +42,20 @@ function RadarChartActivity() {
 
     return (
         <div className={Classes.radarChart}>
-            {userDataPerformance && (
-                <>
-                    <RadarChart width={258} height={263} cx="50%" cy="50%" outerRadius="70%" data={dataPoints()} >
-                        <PolarGrid radialLines={false} />
-                        <PolarAngleAxis dataKey="name" tick={{ fill: 'white' }} />
-                        <Radar dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
-                    </RadarChart>
-                </>
+            {error ? (
+                <div className={Classes.errorMessage}>
+                    <p>{error}</p>
+                </div>
+            ) : (
+                    userDataPerformance && (
+                        <>
+                            <RadarChart width={258} height={263} cx="50%" cy="50%" outerRadius="70%" data={dataPoints()} >
+                                <PolarGrid radialLines={false} />
+                                <PolarAngleAxis dataKey="name" tick={{ fill: 'white' }} />
+                                <Radar dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
+                            </RadarChart>
+                        </>
+                    )
             )}
         </div>
     );

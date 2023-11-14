@@ -2,6 +2,10 @@
 .radarChart {
     background: #282D30;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 258px;
 }
 
 tspan {
@@ -10,4 +14,14 @@ tspan {
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
+}
+
+.errorMessage {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
 }
